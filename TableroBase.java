@@ -24,7 +24,7 @@ public  abstract class TableroBase {
         for(int i =0;i<2;i++){
             numero1=generaNumeroAleatorio();
             numero2=generaNumeroAleatorio();
-            
+
             if(tablero[numero1][numero2]==2){
                 tablero[numero1][numero2]=2;
                 i--;
@@ -33,6 +33,19 @@ public  abstract class TableroBase {
         }
         
     }
+
+    public void generaNumeroPorMovimiento(){
+        int numero1;
+        int numero2;
+
+            numero1=generaNumeroAleatorio();
+            numero2=generaNumeroAleatorio();
+         
+            if(tablero[numero1][numero2]!=0){
+            return;
+            }
+            tablero[numero1][numero2]=2;
+        }
 
     public TableroBase(){
         tablero =new int [FIL][COL];

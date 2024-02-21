@@ -52,12 +52,4 @@ public  abstract class TableroBase {
         generaPosicionesAleatorias();
     }
     
-    public static void main(String[] args) {
-        TableroBase uno = new TableroBase() {
-            
-        };
-        uno.muestraTablero();
-
-    }
-
 }

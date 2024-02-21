@@ -43,7 +43,7 @@ public  class Tablero extends TableroBase implements Movimiento {
     @Override
     public void mueveAbajo() {
         for(int i =3;i>0;i--){
-            for(int j=0;j<3;j++){
+            for(int j=0;j<=3;j++){
                 if(i==0){
                 return;
                 }
@@ -55,7 +55,7 @@ public  class Tablero extends TableroBase implements Movimiento {
     @Override
     public void mueveArriba() {
         for(int i =0;i<3;i++){
-            for(int j=0;j<3;j++){
+            for(int j=0;j<=3;j++){
                 if(i==3){
                 return;
                 }
@@ -66,11 +66,12 @@ public  class Tablero extends TableroBase implements Movimiento {
 
     @Override
     public void mueveDerecha() {
-        for(int i =3;i>0;i--){
+        for(int i =3;i>=0;i--){
             for(int j=3;j>0;j--){
                 if(j==0){
-                    return;
+                    break;
                 }
+                
                 tablero[i][j]=tablero[i][j-1];
             }
         }         
@@ -78,7 +79,7 @@ public  class Tablero extends TableroBase implements Movimiento {
 
     @Override
     public void mueveIzquierda() {
-        for(int i =0;i<3;i++){
+        for(int i =0;i<=3;i++){
             for(int j=0;j<3;j++){
 
                 tablero[i][j]=tablero[i][j+1];

@@ -7,9 +7,9 @@ public  abstract class TableroBase {
     public void muestraTablero(){
         for(int i=0; i<4;i++){
             for(int j=0;j<4;j++){
-                System.out.print(this.tablero[i][j]);
+                System.out.print("    "+this.tablero[i][j]+"    ");
             }
-            System.out.println();
+            System.out.println("                            ");
         }
     }
     public int generaNumeroAleatorio(){
@@ -38,13 +38,15 @@ public  abstract class TableroBase {
         int numero1;
         int numero2;
 
+        for(int i=0;i<4;i++){
+
             numero1=generaNumeroAleatorio();
             numero2=generaNumeroAleatorio();
-         
-            if(tablero[numero1][numero2]!=0){
-            return;
+                if(this.tablero[numero1][numero2] == 0){
+                    tablero[numero1][numero2]=2;
+                return;
+                }  
             }
-            tablero[numero1][numero2]=2;
         }
 
     public TableroBase(){

@@ -3,17 +3,20 @@ import java.util.Scanner;
 public  class Tablero extends TableroBase implements Movimiento {
     public Scanner input= new Scanner(System.in);
     boolean ganador=true;
+    boolean perdedor=false;
     
     Tablero(){
 
-        while (ganador) {
+        while (ganador || !perdedor) {
             muestraTablero();
+            generaNumeroPorMovimiento();        
             hacerMovimiento();
+            compruebaGanador();
         }
     }
     
     public boolean compruebaSuma(int x,int y){
-        if (x==y) {
+        if (x==y && x!=0 && y!=0) {
             return true;
         }
         return false;
@@ -44,11 +47,15 @@ public  class Tablero extends TableroBase implements Movimiento {
     public void mueveAbajo() {
         for(int i =3;i>0;i--){
             for(int j=0;j<=3;j++){
-                if(i==0){
-                return;
+                if(compruebaSuma(tablero[i][j], tablero[i-1][j])){
+                    tablero[i][j]=tablero[i][j]+tablero[i-1][j];
+                    tablero[i-1][j]=0;
+                    return;
                 }
-                tablero[i][j]=tablero[i-1][j];
-            }
+                if(tablero[i][j]==0){
+                    tablero[i][j]=tablero[i-1][j];
+                    tablero[i-1][j]=0;
+                }            }
         } 
     }        
 
@@ -56,11 +63,15 @@ public  class Tablero extends TableroBase implements Movimiento {
     public void mueveArriba() {
         for(int i =0;i<3;i++){
             for(int j=0;j<=3;j++){
-                if(i==3){
-                return;
+                if(compruebaSuma(tablero[i][j], tablero[i+1][j])){
+                    tablero[i][j]=tablero[i][j]+tablero[i+1][j];
+                    tablero[i+1][j]=0;
+                    return;
                 }
-                tablero[i][j]=tablero[i+1][j];
-            }
+                if(tablero[i][j]==0){
+                    tablero[i][j]=tablero[i+1][j];
+                    tablero[i+1][j]=0;
+                }            }
         } 
     }
 
@@ -68,11 +79,16 @@ public  class Tablero extends TableroBase implements Movimiento {
     public void mueveDerecha() {
         for(int i =3;i>=0;i--){
             for(int j=3;j>0;j--){
-                if(j==0){
-                    break;
+                if(compruebaSuma(tablero[i][j], tablero[i][j-1])){
+                    tablero[i][j]=tablero[i][j]+tablero[i][j-1];
+                    tablero[i][j-1]=0;
+                    return;
                 }
-                
-                tablero[i][j]=tablero[i][j-1];
+
+                if(tablero[i][j]==0){
+                    tablero[i][j]=tablero[i][j-1];
+                    tablero[i][j-1]=0;
+                }                
             }
         }         
     }
@@ -81,10 +97,38 @@ public  class Tablero extends TableroBase implements Movimiento {
     public void mueveIzquierda() {
         for(int i =0;i<=3;i++){
             for(int j=0;j<3;j++){
-
-                tablero[i][j]=tablero[i][j+1];
+                if(compruebaSuma(tablero[i][j], tablero[i][j+1])){
+                    tablero[i][j]=tablero[i][j]+tablero[i][j+1];
+                    tablero[i][j+1]=0;                   
+                    return;
+                }
+                    if(tablero[i][j]==0){
+                        tablero[i][j]=tablero[i][j+1];
+                        tablero[i][j+1]=0;
+                    }
+                
+                
             }
         }        
+    }
+    public void compruebaGanador(){
+        boolean noCero=false;
+        for(int i=0;i<4;i++){
+            noCero=false;
+            for(int j=0;j<4;j++){
+                if (tablero[i][j]==2048) {
+                    ganador=false;
+                    System.out.println("Has ganado");
+                }
+                if (tablero[i][j]==0) {
+                    noCero=true;
+                }
+
+            }
+        }
+        if (noCero) {
+            perdedor=true;
+        }
     }
 
     

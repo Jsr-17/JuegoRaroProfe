@@ -114,8 +114,7 @@ public  class Tablero extends TableroBase implements Movimiento {
     public void compruebaGanador(){
         boolean noCero=false;
         for(int i=0;i<4;i++){
-            noCero=false;
-            for(int j=0;j<4;j++){
+            for(int j=0;j<4 && !ganador;j++){
                 if (tablero[i][j]==2048) {
                     ganador=false;
                     System.out.println("Has ganado");
